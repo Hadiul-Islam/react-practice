@@ -22,8 +22,10 @@ const Items = (props) => {
         itemContent = filteredItems.map((item) => {
             return ( <Item 
                 key={item.id} 
+                id={item.id}
                 name={item.name} 
-                day={item.todo} 
+                day={item.todo}
+                onDelete={props.onDeleteItem} 
                 />)
         });
     }

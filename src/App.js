@@ -29,12 +29,18 @@ const App = () => {
     setDark(!dark);
   }
 
+  const itemDeleteHandler = (itemId) => {
+    setItems((prevItems) => {
+      return prevItems.filter((item) => item.id !== itemId);
+    });
+  };
+
   return (
     <div className={dark===true ? 'dark' :'light'}>
       <button onClick={changeMode}>{dark===true ? 'Light Mode': 'Dark Mode'}</button>
       <div className="container my-5 wd">
         <NewItem onSaveData={saveItemHandler} />
-        <Items items={items} />
+        <Items items={items} onDeleteItem={itemDeleteHandler} />
       </div>
     </div>
   );

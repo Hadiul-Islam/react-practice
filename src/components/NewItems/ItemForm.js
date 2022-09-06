@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 const ItemForm = (props) => {
   const [enteredName, setEnteredName] = useState("");
-  const [enteredDay, setEnteredDay] = useState("");
+  const [enteredDay, setEnteredDay] = useState("Mon");
+  const [isValid, setIsValid] = useState(true);
+  
 
   const nameHandler = (e) => {
     setEnteredName(e.target.value);
@@ -15,6 +17,11 @@ const ItemForm = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    if(enteredName.trim().length === 0){
+        setIsValid(false);
+        return;
+    }
+
     const itemData = {
       name: enteredName,
       todo: enteredDay,
@@ -22,7 +29,6 @@ const ItemForm = (props) => {
 
     props.onSaveData(itemData);
     setEnteredName("");
-    setEnteredDay("");
   };
 
   return (
@@ -30,22 +36,22 @@ const ItemForm = (props) => {
       <div className="row">
       <div className="col-md-6">
         <div>
-          <label htmlFor="name">Name</label>
+          <label style={{color: !isValid ? 'red' : 'black' }} htmlFor="name">Name</label>
           <input
+            style={{borderColor: !isValid ? 'red' : 'black' }}
             type="text"
             value={enteredName}
             onChange={nameHandler}
             id="name"
             placeholder="Enter Name"
             className="form-control"
-            required
           />
         </div>
       </div>
 
-      <div className="col-md-6">
+      <div className="col-md-6 text-end">
         <div>
-        <label htmlFor="name">Select Day</label>
+        <label htmlFor="name">Select Day</label> <br />
 
           <select value={enteredDay} onChange={dayHandler}>
             <option value="Sat">Sat</option>
