@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Items from "./components/Items";
 import NewItem from "./components/NewItems/NewItem";
+import { MdDarkMode, MdLightbulbOutline } from "react-icons/md";
 
 const data = [
   {
@@ -16,7 +17,7 @@ const data = [
 ];
 
 const App = () => {
-  const [dark , setDark] = useState(false);
+  const [dark, setDark] = useState(false);
   const [items, setItems] = useState(data);
   const saveItemHandler = (enteredItemData) => {
     setItems((prevItems) => {
@@ -25,9 +26,9 @@ const App = () => {
   };
 
   const changeMode = () => {
-    console.log('test');
+    console.log("test");
     setDark(!dark);
-  }
+  };
 
   const itemDeleteHandler = (itemId) => {
     setItems((prevItems) => {
@@ -36,8 +37,14 @@ const App = () => {
   };
 
   return (
-    <div className={dark===true ? 'dark' :'light'}>
-      <button onClick={changeMode}>{dark===true ? 'Light Mode': 'Dark Mode'}</button>
+    <div className={dark === true ? "dark" : "light"}>
+      <button onClick={changeMode}>
+        {dark === true ? (
+          <MdLightbulbOutline size={30} />
+        ) : (
+          <MdDarkMode size={30} />
+        )}
+      </button>
       <div className="container my-5 wd">
         <NewItem onSaveData={saveItemHandler} />
         <Items items={items} onDeleteItem={itemDeleteHandler} />
