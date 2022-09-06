@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ItemForm = (props) => {
   const [enteredName, setEnteredName] = useState("");
@@ -19,6 +21,9 @@ const ItemForm = (props) => {
 
     if(enteredName.trim().length === 0){
         setIsValid(false);
+        toast.error('Please enter a valid name', {
+              autoClose: 2000,
+            });
         return;
     }
 
@@ -29,10 +34,15 @@ const ItemForm = (props) => {
 
     props.onSaveData(itemData);
     setEnteredName("");
+    toast("Item added successfully", {
+      type: "success",
+      autoClose: 900,
+    })
   };
 
   return (
     <form onSubmit={submitHandler}>
+      <ToastContainer />
       <div className="row">
       <div className="col-md-6">
         <div>
