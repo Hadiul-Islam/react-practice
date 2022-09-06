@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Items from "./components/Items";
+import NewItem from "./components/NewItems/NewItem";
 
-function App() {
+const data = [
+  {
+    id: 1,
+    name: "Sat Iitem",
+    todo: "Sat",
+  },
+  {
+    id: 2,
+    name: "Mon Iitem",
+    todo: "Mon",
+  },
+];
+
+const App = () => {
+  const [dark , setDark] = useState(false);
+  const [items, setItems] = useState(data);
+  const saveItemHandler = (enteredItemData) => {
+    setItems((prevItems) => {
+      return [enteredItemData, ...prevItems];
+    });
+  };
+
+  const changeMode = () => {
+    console.log('test');
+    setDark(!dark);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={dark===true ? 'dark' :'light'}>
+      <button onClick={changeMode}>{dark===true ? 'Light Mode': 'Dark Mode'}</button>
+      <div className="container my-5 wd">
+        <NewItem onSaveData={saveItemHandler} />
+        <Items items={items} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
