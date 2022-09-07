@@ -1,0 +1,36 @@
+.back-overly {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(209, 160, 136, 0.559);
+    z-index: 100;
+}
+
+
+.erorr-modal {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 50%;
+    height: 60vh;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px rgb(112, 106, 106);
+    padding: 16px;
+    left: 25%;
+    top: 20%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}
+
+.erorr-content {
+    text-align: center;
+}
+.erorr-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1rem;
+    cursor: pointer;
+}
